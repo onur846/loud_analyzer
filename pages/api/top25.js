@@ -7,19 +7,19 @@ export default async function handler(req, res) {
     const $ = cheerio.load(html);
     const handles = [];
 
-    // Select Twitter handles from the leaderboard section
+    // Select anchor tags that link to Twitter profiles
     $('a[href*="twitter.com/"]').each((_, el) => {
       const url = $(el).attr('href');
-      const match = url.match(/twitter\.com\/(\w+)/);
+      const match = url.match(/twitter\.com\/([A-Za-z0-9_]+)/);
       if (match && match[1] && !handles.includes(match[1])) {
         handles.push(match[1]);
       }
     });
 
-    // Limit to top 25 only
+    // Limit to top 25
     const top25 = handles.slice(0, 25).map((handle) => ({
       handle,
-      engagement: Math.floor(Math.random() * 10000),
+      engagement: Math.floor(Math.random() * 10000), // Placeholder
       lastTweet: "(to be fetched separately)",
       likes: 0,
       retweets: 0,
