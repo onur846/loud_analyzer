@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import '../styles/globals.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
