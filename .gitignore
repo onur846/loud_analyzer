@@ -1,14 +1,4 @@
-# dependencies
 node_modules/
-
-# Next.js build output
 .next/
-out/
-
-# environment variables
 .env
 .env.local
-
-# system files
-.DS_Store
-*.log
