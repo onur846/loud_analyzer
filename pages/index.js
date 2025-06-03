@@ -1,19 +1,27 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 export default function Home() {
   const [topUsers, setTopUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchTopUsers() {
       try {
-        const response = await axios.get('https://loud-puppeteer.onrender.com/top25'); // 🔁 Direct Render call
-        setTopUsers(response.data);
-      } catch (error) {
-        console.error('Error fetching top users:', error);
+        const response = await fetch('https://loud-puppeteer.onrender.com/top25');
+        if (!response.ok) throw new Error("Backend error");
+        const data = await response.json();
+        console.log("Fetched users:", data); // 🔍 Debug
+        setTopUsers(data);
+      } catch (err) {
+        console.error("❌ Fetch error:", err);
+        setError("Failed to fetch data");
+      } finally {
+        setLoading(false);
       }
     }
+
     fetchTopUsers();
   }, []);
 
@@ -27,6 +35,9 @@ export default function Home() {
         <h1>🚀 LOUD Top 25 Analyzer</h1>
         <p>Discover what the top $LOUD influencers are doing to stay ahead.</p>
       </header>
+
+      {loading && <p>Loading...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
 
       <section className="grid">
         {topUsers.map((user, index) => (
