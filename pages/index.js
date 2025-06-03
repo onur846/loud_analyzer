@@ -60,7 +60,7 @@ export default function Home() {
 
             <p><strong>Mindshare:</strong> {user.mindshare}</p>
             <p><strong>24h Change:</strong> {user.change}</p>
-            <p><strong>Earnings:</strong> {user.earnings?.replace(/\s?\$/, ' ($')})</p>
+            <p><strong>Earnings:</strong> {user.earnings ? user.earnings.replace(/\s?\$/, ' ($') + ')' : 'N/A'}</p>
 
             <a
               className="button"
