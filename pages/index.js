@@ -9,7 +9,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchTopUsers() {
       try {
-        const response = await fetch('https://loud-puppeteer.onrender.com/top25');
+        const response = await fetch('/api/top25'); // ✅ Use Vercel proxy
         if (!response.ok) throw new Error('Backend error');
         const data = await response.json();
         console.log("✅ Top users fetched:", data);
@@ -60,7 +60,12 @@ export default function Home() {
             <p><strong>Mindshare:</strong> {user.mindshare}</p>
             <p><strong>24h Change:</strong> {user.change}</p>
             <p><strong>Earnings:</strong> {user.earnings}</p>
-            <a className="button" href={`https://twitter.com/${user.handle}`} target="_blank" rel="noopener noreferrer">
+            <a
+              className="button"
+              href={`https://twitter.com/${user.handle}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               View on Twitter →
             </a>
           </div>
