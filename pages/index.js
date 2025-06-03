@@ -1,38 +1,50 @@
-import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 export default function Home() {
-  const [topUsers, setTopUsers] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    async function fetchTopUsers() {
-      const response = await axios.get('/api/top25');
-      setTopUsers(response.data);
+    async function fetchUsers() {
+      try {
+        const res = await fetch(
+          'https://foundation-api.stayloud.io/ipfs/list/?type=leaderboard&page=1&limit=25&sortBy=score&sortOrder=desc'
+        );
+        const json = await res.json();
+
+        const cleaned = json?.data?.map((entry) => ({
+          username: entry.name,
+          handle: entry.twitterHandle,
+          avatar: entry.image,
+          score: entry.score,
+        })) || [];
+
+        setUsers(cleaned);
+      } catch (err) {
+        console.error('❌ Failed to load users:', err);
+      }
     }
-    fetchTopUsers();
+
+    fetchUsers();
   }, []);
 
   return (
-    <div className="container">
-      <Head>
-        <title>LOUD Top 25 Analyzer</title>
-      </Head>
-      <header className="header">
-        <h1>🚀 LOUD Top 25 Analyzer</h1>
-        <p>Discover what the top $LOUD influencers are doing to stay ahead.</p>
-      </header>
-      <section className="grid">
-        {topUsers.map((user, index) => (
-          <div className="card" key={index}>
-            <h2>@{user.handle}</h2>
-            <p><strong>Engagement:</strong> {user.engagement}</p>
-            <p className="tweet">“{user.lastTweet}”</p>
-            <p>❤️ {user.likes} 🔁 {user.retweets}</p>
-            <a className="button" href={`/user/${user.handle}`}>View Strategy →</a>
-          </div>
+    <main style={{ padding: 32 }}>
+      <h1 style={{ fontSize: '2rem', marginBottom: 24 }}>Top 25 StayLoud Users</h1>
+      <ul style={{ listStyle: 'none', padding: 0 }}>
+        {users.map((user, i) => (
+          <li key={user.handle} style={{ marginBottom: 16, display: 'flex', alignItems: 'center' }}>
+            <img
+              src={user.avatar}
+              alt={user.handle}
+              style={{ width: 48, height: 48, borderRadius: '50%', marginRight: 16 }}
+            />
+            <div>
+              <strong>{i + 1}. {user.username}</strong>
+              <div style={{ color: '#888' }}>@{user.handle} • Score: {user.score.toFixed(4)}</div>
+            </div>
+          </li>
         ))}
-      </section>
-    </div>
+      </ul>
+    </main>
   );
 }
