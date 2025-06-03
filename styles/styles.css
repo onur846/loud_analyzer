@@ -82,3 +82,11 @@ img {
 .button:hover {
   background-color: #0059c1;
 }
+
+.avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
