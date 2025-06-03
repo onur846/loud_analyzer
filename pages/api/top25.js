@@ -1,34 +1,30 @@
 import axios from 'axios';
-import * as cheerio from 'cheerio';
 
 export default async function handler(req, res) {
   try {
-    const { data: html } = await axios.get('https://www.stayloud.io');
-    const $ = cheerio.load(html);
+    const { data } = await axios.get(
+      'https://foundation-api.stayloud.io/ipfs/list/',
+      {
+        params: {
+          type: 'leaderboard',
+          page: 1,
+          limit: 25,
+          sortBy: 'score',
+          sortOrder: 'desc',
+        },
+      }
+    );
 
-    const users = [];
-
-    $('tr[data-slot="table-row"]').each((_, el) => {
-      if (users.length >= 25) return false;
-
-      const row = $(el);
-      const userLink = row.find('a[href*="twitter.com/i/user/"]').first();
-      const handleSpan = row.find('span.text-sm.text-gray-500').first();
-
-      if (!userLink.length || !handleSpan.length) return;
-
-      const username = userLink.text().trim();
-      let handle = handleSpan.text().trim();
-
-      if (!username || !handle.startsWith('@')) return;
-
-      handle = handle.slice(1); // Remove leading '@'
-      users.push({ handle, username });
-    });
+    const users = data?.data?.map((entry) => ({
+      username: entry.name || '',
+      handle: entry.twitterHandle || '',
+      avatar: entry.image || '',
+      score: entry.score || 0,
+    })) || [];
 
     res.status(200).json(users);
   } catch (error) {
-    console.error('Failed to scrape StayLoud.io:', error);
-    res.status(500).json({ error: 'Could not fetch leaderboard data' });
+    console.error('Error fetching leaderboard:', error);
+    res.status(500).json({ error: 'Failed to fetch leaderboard' });
   }
 }
