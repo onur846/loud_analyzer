@@ -1,9 +1,9 @@
-export function Avatar({ src, alt = "", className = "" }) {
+export function Avatar({ src, alt, className }) {
   return (
     <img
       src={src}
       alt={alt}
-      className={`w-12 h-12 rounded-full object-cover ${className}`}
+      className={`rounded-full w-10 h-10 object-cover ${className}`}
     />
   );
 }
