@@ -50,7 +50,7 @@ export default function Home() {
               />
               <div>
                 <h2 className="text-lg font-bold">
-                  #{index + 1} @{user.handle}
+                  #{index + 1} {user.username}
                 </h2>
                 <div className="text-sm text-gray-600">
                   {index === 0 ? '🥇 Top 1' : index === 1 ? '🥈 Top 2' : index === 2 ? '🥉 Top 3' : '🎯'}
