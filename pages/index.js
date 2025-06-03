@@ -9,7 +9,7 @@ export default function Home() {
   useEffect(() => {
     async function fetchTopUsers() {
       try {
-        const response = await fetch('/api/top25'); // Using Vercel proxy
+        const response = await fetch('/api/top25');
         if (!response.ok) throw new Error('Backend error');
         const data = await response.json();
         console.log("✅ Top users fetched:", data);
@@ -60,7 +60,8 @@ export default function Home() {
 
             <p><strong>Mindshare:</strong> {user.mindshare}</p>
             <p><strong>24h Change:</strong> {user.change}</p>
-            <p><strong>Earnings:</strong> {user.earnings}</p>
+            <p><strong>Earnings:</strong> {user.earnings?.replace(/\s?\$/, ' ($')})</p>
+
             <a
               className="button"
               href={`https://twitter.com/${user.handle}`}
