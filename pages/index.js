@@ -10,9 +10,9 @@ export default function Home() {
     async function fetchTopUsers() {
       try {
         const response = await fetch('https://loud-puppeteer.onrender.com/top25');
-        if (!response.ok) throw new Error("Backend error");
+        if (!response.ok) throw new Error('Backend error');
         const data = await response.json();
-        console.log("Fetched users:", data); // 🔍 Debug
+        console.log("✅ Top users fetched:", data);
         setTopUsers(data);
       } catch (err) {
         console.error("❌ Fetch error:", err);
@@ -37,14 +37,14 @@ export default function Home() {
       </header>
 
       {loading && <p>Loading...</p>}
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <section className="grid">
         {topUsers.map((user, index) => (
           <div className="card" key={index}>
             <div className="flex items-center gap-3 mb-2">
               <img
-                src={user.avatar || `https://unavatar.io/twitter/${user.handle.replace('@', '')}`}
+                src={user.avatar || `https://unavatar.io/twitter/${user.handle}`}
                 alt="Avatar"
                 className="w-12 h-12 rounded-full"
               />
@@ -53,14 +53,16 @@ export default function Home() {
                   #{index + 1} @{user.handle}
                 </h2>
                 <div className="text-sm text-gray-600">
-                  {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '🎯'}
+                  {index === 0 ? '🥇 Top 1' : index === 1 ? '🥈 Top 2' : index === 2 ? '🥉 Top 3' : '🎯'}
                 </div>
               </div>
             </div>
-            <p><strong>Engagement:</strong> {user.engagement}</p>
-            <p className="tweet">“{user.lastTweet}”</p>
-            <p>❤️ {user.likes} 🔁 {user.retweets}</p>
-            <a className="button" href={`/user/${user.handle}`}>View Strategy →</a>
+            <p><strong>Mindshare:</strong> {user.mindshare}</p>
+            <p><strong>24h Change:</strong> {user.change}</p>
+            <p><strong>Earnings:</strong> {user.earnings}</p>
+            <a className="button" href={`https://twitter.com/${user.handle}`} target="_blank" rel="noopener noreferrer">
+              View on Twitter →
+            </a>
           </div>
         ))}
       </section>
