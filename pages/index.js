@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import styles from '../styles/globals.css';
+import '../styles/globals.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
