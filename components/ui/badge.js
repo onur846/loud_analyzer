@@ -1,6 +1,6 @@
-export function Badge({ children, className = "" }) {
+export function Badge({ children, className }) {
   return (
-    <span className={`px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full font-semibold ${className}`}>
+    <span className={`inline-block px-2 py-1 text-xs font-semibold bg-gray-200 text-gray-700 rounded ${className}`}>
       {children}
     </span>
   );
