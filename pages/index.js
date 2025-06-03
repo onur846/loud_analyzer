@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
-import { Avatar } from '@/components/ui/avatar';
-import { Badge } from '@/components/ui/badge';
-import { Skeleton } from '@/components/ui/skeleton';
+import { Card, CardContent } from '../components/ui/card';
+import { Avatar } from '../components/ui/avatar';
+import { Badge } from '../components/ui/badge';
+import { Skeleton } from '../components/ui/skeleton';
 
 export default function Home() {
   const [users, setUsers] = useState([]);
