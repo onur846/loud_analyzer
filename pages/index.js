@@ -1,38 +1,29 @@
-import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 export default function Home() {
-  const [topUsers, setTopUsers] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    async function fetchTopUsers() {
-      const response = await axios.get('/api/top25');
-      setTopUsers(response.data);
-    }
-    fetchTopUsers();
+    fetch('https://loud-puppeteer.onrender.com/top25')
+      .then(res => res.json())
+      .then(data => setUsers(data))
+      .catch(err => console.error('Failed to load users:', err));
   }, []);
 
   return (
-    <div className="container">
-      <Head>
-        <title>LOUD Top 25 Analyzer</title>
-      </Head>
-      <header className="header">
-        <h1>🚀 LOUD Top 25 Analyzer</h1>
-        <p>Discover what the top $LOUD influencers are doing to stay ahead.</p>
-      </header>
-      <section className="grid">
-        {topUsers.map((user, index) => (
-          <div className="card" key={index}>
-            <h2>@{user.handle}</h2>
-            <p><strong>Engagement:</strong> {user.engagement}</p>
-            <p className="tweet">“{user.lastTweet}”</p>
-            <p>❤️ {user.likes} 🔁 {user.retweets}</p>
-            <a className="button" href={`/user/${user.handle}`}>View Strategy →</a>
-          </div>
+    <div style={{ padding: '2rem' }}>
+      <h1 style={{ fontSize: '2rem', fontWeight: 'bold' }}>🔥 StayLoud Top 25</h1>
+      <ul>
+        {users.map((u, i) => (
+          <li key={u.handle} style={{ marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <img src={u.avatar} alt={u.username} width={48} height={48} style={{ borderRadius: '50%' }} />
+            <div>
+              <div><strong>{i + 1}. {u.username}</strong> @{u.handle}</div>
+              <div>💰 {u.mindshare}</div>
+            </div>
+          </li>
         ))}
-      </section>
+      </ul>
     </div>
   );
 }
