@@ -1,64 +1,58 @@
+import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import { Card, CardContent } from '../components/ui/card';
-import { Avatar } from '../components/ui/avatar';
-import { Badge } from '../components/ui/badge';
-import { Skeleton } from '../components/ui/skeleton';
+import axios from 'axios';
 
 export default function Home() {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [topUsers, setTopUsers] = useState([]);
 
   useEffect(() => {
-    fetch('https://loud-puppeteer.onrender.com/top25')
-      .then(res => res.json())
-      .then(data => {
-        setUsers(data);
-        setLoading(false);
-      })
-      .catch(err => console.error('Failed to load users:', err));
+    async function fetchTopUsers() {
+      try {
+        const response = await axios.get('https://loud-puppeteer.onrender.com/top25'); // 🔁 Direct Render call
+        setTopUsers(response.data);
+      } catch (error) {
+        console.error('Error fetching top users:', error);
+      }
+    }
+    fetchTopUsers();
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white via-[#f2fbf5] to-[#e1f4ff] p-6">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-extrabold text-center mb-6 text-gray-800">
-          🚀 StayLoud Top 25 Leaderboard
-        </h1>
+    <div className="container">
+      <Head>
+        <title>LOUD Top 25 Analyzer</title>
+      </Head>
 
-        {loading ? (
-          <div className="grid grid-cols-1 gap-4">
-            {[...Array(10)].map((_, i) => (
-              <Skeleton key={i} className="h-24 w-full rounded-2xl" />
-            ))}
+      <header className="header">
+        <h1>🚀 LOUD Top 25 Analyzer</h1>
+        <p>Discover what the top $LOUD influencers are doing to stay ahead.</p>
+      </header>
+
+      <section className="grid">
+        {topUsers.map((user, index) => (
+          <div className="card" key={index}>
+            <div className="flex items-center gap-3 mb-2">
+              <img
+                src={user.avatar || `https://unavatar.io/twitter/${user.handle.replace('@', '')}`}
+                alt="Avatar"
+                className="w-12 h-12 rounded-full"
+              />
+              <div>
+                <h2 className="text-lg font-bold">
+                  #{index + 1} @{user.handle}
+                </h2>
+                <div className="text-sm text-gray-600">
+                  {index === 0 ? '🥇' : index === 1 ? '🥈' : index === 2 ? '🥉' : '🎯'}
+                </div>
+              </div>
+            </div>
+            <p><strong>Engagement:</strong> {user.engagement}</p>
+            <p className="tweet">“{user.lastTweet}”</p>
+            <p>❤️ {user.likes} 🔁 {user.retweets}</p>
+            <a className="button" href={`/user/${user.handle}`}>View Strategy →</a>
           </div>
-        ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {users.map((user, index) => (
-              <Card key={user.handle} className="rounded-2xl shadow-lg border border-gray-200 bg-white hover:shadow-xl transition">
-                <CardContent className="p-5 flex items-center gap-4">
-                  <div className="text-2xl font-bold text-gray-400">#{index + 1}</div>
-                  <Avatar>
-                    <img
-                      src={user.avatar}
-                      alt={user.username}
-                      className="rounded-full w-14 h-14"
-                    />
-                  </Avatar>
-                  <div className="flex-1">
-                    <div className="text-lg font-semibold text-gray-800 truncate">
-                      {user.username}
-                    </div>
-                    <div className="text-sm text-gray-500 truncate">@{user.handle}</div>
-                  </div>
-                  <Badge className="bg-[#01FF99] text-white font-bold text-sm py-1 px-2 rounded-md">
-                    {user.mindshare}
-                  </Badge>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        )}
-      </div>
+        ))}
+      </section>
     </div>
   );
 }
