@@ -7,27 +7,29 @@ export default async function handler(req, res) {
     const $ = cheerio.load(html);
     const handles = [];
 
-    // Select anchor tags that link to Twitter profiles
-    $('a[href*="twitter.com/"]').each((_, el) => {
-      const url = $(el).attr('href');
-      const match = url.match(/twitter\.com\/([A-Za-z0-9_]+)/);
-      if (match && match[1] && !handles.includes(match[1])) {
-        handles.push(match[1]);
+    // Select Twitter profile links that match user id format
+    $('a[href*="twitter.com/i/user/"]').each((_, el) => {
+      const title = $(el).attr('title')?.trim();
+      const displayName = $(el).text().trim();
+
+      if (title && !handles.includes(title)) {
+        handles.push(title);
+      } else if (displayName && !handles.includes(displayName)) {
+        handles.push(displayName);
       }
     });
 
-    // Limit to top 25
-    const top25 = handles.slice(0, 25).map((handle) => ({
-      handle,
-      engagement: Math.floor(Math.random() * 10000), // Placeholder
-      lastTweet: "(to be fetched separately)",
+    const top25 = handles.slice(0, 25).map((name) => ({
+      handle: name,
+      engagement: Math.floor(Math.random() * 10000), // placeholder
+      lastTweet: "(fetched later)",
       likes: 0,
       retweets: 0,
     }));
 
     res.status(200).json(top25);
   } catch (error) {
-    console.error('Failed to scrape StayLoud.io:', error);
-    res.status(500).json({ error: 'Could not fetch leaderboard data' });
+    console.error('Error scraping StayLoud.io:', error.message);
+    res.status(500).json({ error: 'Failed to fetch top 25 users' });
   }
 }
