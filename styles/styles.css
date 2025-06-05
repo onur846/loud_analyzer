@@ -83,6 +83,22 @@ img {
   background-color: #0059c1;
 }
 
+.button2 {
+  display: inline-block;
+  margin-top: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  background-color: #dc2626;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.button2:hover {
+  background-color: #bf1615;
+}
+
 .avatar {
   width: 48px;
   height: 48px;
