@@ -70,6 +70,16 @@ export default function Home() {
             >
               View on Twitter →
             </a>
+
+            <a
+              className="button"
+              style={{ backgroundColor: '#dc2626', marginTop: '8px' }}
+              href={`/strategy/${user.handle}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Check Strategy 🔥
+            </a>
           </div>
         ))}
       </section>
