@@ -73,8 +73,7 @@ export default function Home() {
             </a>
 
             <a
-              className="button"
-              style={{ backgroundColor: '#dc2626', marginTop: '8px' }}
+              className="button2"
               href={`/strategy/${user.handle}`}
               target="_blank"
               rel="noopener noreferrer"
