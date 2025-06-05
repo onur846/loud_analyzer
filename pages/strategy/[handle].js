@@ -44,9 +44,9 @@ export default function StrategyPage() {
           <p className="text-red-500 text-center">{error}</p>
         ) : (
           <div className="space-y-8">
-            <div className="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out">
+            <div className="bg-gray-900 p-8 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 ease-in-out">
               <h2 className="text-2xl font-semibold mb-4 text-lime-300">📊 Strategy Stats</h2>
-              <ul className="grid grid-cols-2 gap-4 text-lg">
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 text-lg">
                 <li>Total Tweets: <span className="text-lime-400">{stats.total}</span></li>
                 <li>Loudio Mentions: <span className="text-lime-400">{stats.loudioCount}</span></li>
                 <li>Unique Hashtags: <span className="text-lime-400">{stats.uniqueHashtags}</span></li>
@@ -54,16 +54,16 @@ export default function StrategyPage() {
               </ul>
             </div>
 
-            <div className="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out">
+            <div className="bg-gray-900 p-8 rounded-xl shadow-2xl hover:shadow-3xl transition-all duration-300 ease-in-out">
               <h2 className="text-2xl font-semibold mb-4 text-lime-300">📜 Recent Tweets</h2>
-              <ul className="space-y-4">
+              <ul className="space-y-6">
                 {data.map((tweet, idx) => (
-                  <li key={idx} className="border-b border-gray-700 pb-4 hover:bg-gray-800 transition-all duration-300 ease-in-out">
+                  <li key={idx} className="border-b border-gray-700 pb-6 hover:bg-gray-800 transition-all duration-300 ease-in-out">
                     <a href={tweet.link} target="_blank" rel="noopener noreferrer" className="text-lime-400 hover:underline break-all">
                       {tweet.link}
                     </a>
-                    <p className="text-sm mt-1 text-gray-400">⏱ {new Date(tweet.timestamp).toLocaleString('en-GB', { timeZone: 'UTC' })} (UTC)</p>
-                    <div className="mt-2 text-sm">
+                    <p className="text-sm mt-2 text-gray-400">⏱ {new Date(tweet.timestamp).toLocaleString('en-GB', { timeZone: 'UTC' })} (UTC)</p>
+                    <div className="mt-3 text-sm">
                       {tweet.containsLoudio && <span className="mr-2 text-green-400">🔊 Mentions "loudio"</span>}
                       {tweet.hashtags.length > 0 && <span className="mr-2">🏷 Hashtags: {tweet.hashtags.join(', ')}</span>}
                       {tweet.mentions.length > 0 && <span>👥 Mentions: {tweet.mentions.join(', ')}</span>}
