@@ -68,17 +68,18 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              View on Twitter →
+              View on X 
             </a>
 
             <a
-              className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2 block text-center"
+              className="button"
+              style={{ backgroundColor: '#dc2626', marginTop: '8px' }}
               href={`/strategy/${user.handle}`}
               target="_blank"
               rel="noopener noreferrer"
-             >
+            >
               Check Strategy 🔥
-             </a>
+            </a>
           </div>
         ))}
       </section>
