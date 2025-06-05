@@ -72,14 +72,13 @@ export default function Home() {
             </a>
 
             <a
-              className="button"
-              style={{ backgroundColor: '#dc2626', marginTop: '8px' }}
+              className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded mt-2 block text-center"
               href={`/strategy/${user.handle}`}
               target="_blank"
               rel="noopener noreferrer"
-            >
+             >
               Check Strategy 🔥
-            </a>
+             </a>
           </div>
         ))}
       </section>
