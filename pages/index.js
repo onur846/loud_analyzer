@@ -64,6 +64,7 @@ export default function Home() {
 
             <a
               className="button"
+              style={{ marginRight: '0.5rem' }}
               href={`https://twitter.com/${user.handle}`}
               target="_blank"
               rel="noopener noreferrer"
