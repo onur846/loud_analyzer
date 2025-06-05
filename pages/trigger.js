@@ -26,7 +26,7 @@ export default function TriggerPage() {
         }
 
         // Wait 4 minutes before the next request
-        await new Promise((resolve) => setTimeout(resolve, 4 * 60 * 1000));
+        await new Promise((resolve) => setTimeout(resolve, 7 * 60 * 1000));
       }
     };
 
