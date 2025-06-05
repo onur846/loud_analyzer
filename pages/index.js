@@ -31,6 +31,10 @@ export default function Home() {
         <title>LOUD Top 25 Analyzer</title>
       </Head>
 
+    <a href="/" className="logo-link">
+      <img src="/loudion.png" alt="Loudions Logo" className="loudion-logo" />
+    </a>
+
       <header className="header">
         <h1>🚀 LOUD Top 25 Analyzer</h1>
         <p>Discover what the top $LOUD influencers are doing to stay ahead.</p>
