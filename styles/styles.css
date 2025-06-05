@@ -110,12 +110,12 @@ img {
 .header-row {
   display: flex;
   align-items: center;
-  gap: 1.25rem; /* space between logo and title */
+  gap: 15.25rem; /* space between logo and title */
   margin-bottom: 2.5rem;
 }
 
 .loudion-logo {
-  width: 48px;   /* Adjust to your preferred size */
-  height: 48px;
+  width: 120px;   /* Adjust to your preferred size */
+  height: 120px;
   display: block;
 }
