@@ -107,16 +107,15 @@ img {
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
 }
 
-.loudion-logo {
-  width: 54px;      
-  height: auto;
-  display: block;
-  margin-bottom: 1rem;
+.header-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem; /* space between logo and title */
+  margin-bottom: 2.5rem;
 }
 
-.logo-link {
-  display: inline-block;
-  position: relative;
-  top: 0;
-  left: 0;
+.loudion-logo {
+  width: 48px;   /* Adjust to your preferred size */
+  height: 48px;
+  display: block;
 }
