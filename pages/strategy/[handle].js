@@ -34,7 +34,7 @@ export default function StrategyPage() {
   return (
     <div className="min-h-screen bg-black text-white px-6 py-10 font-sans">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6 text-center text-lime-400">
+        <h1 className="text-4xl font-bold mb-6 text-center text-lime-400 transition-all duration-300 ease-in-out transform hover:scale-105">
           Strategy of <span className="text-white">@{handle}</span>
         </h1>
 
@@ -44,8 +44,8 @@ export default function StrategyPage() {
           <p className="text-red-500 text-center">{error}</p>
         ) : (
           <div className="space-y-8">
-            <div className="bg-gray-900 p-6 rounded-xl shadow-lg">
-              <h2 className="text-2xl font-semibold mb-4 text-lime-300">📊 Statistics</h2>
+            <div className="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out">
+              <h2 className="text-2xl font-semibold mb-4 text-lime-300">📊 Strategy Stats</h2>
               <ul className="grid grid-cols-2 gap-4 text-lg">
                 <li>Total Tweets: <span className="text-lime-400">{stats.total}</span></li>
                 <li>Loudio Mentions: <span className="text-lime-400">{stats.loudioCount}</span></li>
@@ -54,11 +54,11 @@ export default function StrategyPage() {
               </ul>
             </div>
 
-            <div className="bg-gray-900 p-6 rounded-xl shadow-lg">
+            <div className="bg-gray-900 p-6 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out">
               <h2 className="text-2xl font-semibold mb-4 text-lime-300">📜 Recent Tweets</h2>
               <ul className="space-y-4">
                 {data.map((tweet, idx) => (
-                  <li key={idx} className="border-b border-gray-700 pb-4">
+                  <li key={idx} className="border-b border-gray-700 pb-4 hover:bg-gray-800 transition-all duration-300 ease-in-out">
                     <a href={tweet.link} target="_blank" rel="noopener noreferrer" className="text-lime-400 hover:underline break-all">
                       {tweet.link}
                     </a>
