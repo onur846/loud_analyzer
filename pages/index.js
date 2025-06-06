@@ -34,7 +34,7 @@ export default function Home() {
       <header className="header header-row">
         <img src="/loudion.png" alt="Loudions Logo" className="loudion-logo" />
         <div>
-          <h1>🚀 LOUD Top 25 Analyzer</h1>
+          <h1>Loudions are here to take over the InfoFi universe 🛸</h1>
           <p>Discover what the top $LOUD influencers are doing to stay ahead.</p>
         </div>
       </header>
