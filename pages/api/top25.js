@@ -1,6 +1,6 @@
 export default async function handler(req, res) {
   try {
-    const response = await fetch("https://loud-puppeteer.onrender.com/top25");
+    const response = await fetch("http://185.215.165.8:3000/top25");
     const data = await response.json();
     res.status(200).json(data);
   } catch (error) {
