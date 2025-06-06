@@ -86,6 +86,17 @@ export default function Home() {
           </div>
         ))}
       </section>
+          <footer className="footer">
+        Created by{' '}
+        <a
+          href="https://twitter.com/pelenko"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="footer-link"
+        >
+          @pelenko
+        </a>
+      </footer>
     </div>
   );
 }
