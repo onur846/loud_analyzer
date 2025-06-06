@@ -111,7 +111,7 @@ img {
 .header-row {
   display: flex;
   align-items: center;
-  gap: 12.25rem; /* space between logo and title */
+  gap: 7.25rem; /* space between logo and title */
   margin-bottom: 2.5rem;
 }
 
