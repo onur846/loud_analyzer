@@ -120,3 +120,25 @@ img {
   height: 120px;
   display: block;
 }
+
+.footer {
+  width: 100%;
+  text-align: center;
+  padding: 2rem 0 1rem 0;
+  color: #9ca3af; /* subtle gray */
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  margin-top: 2.5rem;
+}
+
+.footer-link {
+  color: #22d3ee; /* neon cyan for attention */
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.18s;
+}
+
+.footer-link:hover {
+  color: #38bdf8; /* even brighter on hover */
+  text-decoration: underline;
+}
