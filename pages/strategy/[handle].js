@@ -59,7 +59,9 @@ export default function StrategyPage() {
           <div className="card">
             <h2 style={{ color: "#9fff43", fontSize: "1.5rem", marginBottom: "1rem" }}>📜 Recent Tweets</h2>
             <ul style={{ padding: 0, listStyle: "none" }}>
-              {data.map((tweet, idx) => (
+              {[...data]
+                .sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+                .map((tweet, idx) => (
                 <li
                   key={idx}
                   style={{
