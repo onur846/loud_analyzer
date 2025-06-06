@@ -37,7 +37,7 @@ export default function StrategyPage() {
         <img src="/loudion.png" alt="Loudions Logo" className="loudion-logo" />
         <div>
           <h1>Strategy of <span style={{ color: '#9fff43' }}>@{handle}</span></h1>
-          <p>All activity and statistics for <b>@{handle}</b> on $LOUD.</p>
+          <p>All activity and statistics for <b>@{handle}</b> based on posts from last 24 hours.</p>
         </div>
       </header>
 
@@ -47,12 +47,12 @@ export default function StrategyPage() {
       {!loading && !error && (
         <>
           <div className="card" style={{ marginBottom: "2rem" }}>
-            <h2 style={{ color: "#9fff43", fontSize: "1.5rem", marginBottom: "1rem" }}>📊 Statistics</h2>
+            <h2 style={{ color: "#9fff43", fontSize: "1.5rem", marginBottom: "1rem" }}>📊 Statistics of last 24 hours</h2>
             <ul style={{ display: "flex", flexWrap: "wrap", gap: "2.5rem", padding: 0, listStyle: "none" }}>
               <li><b>Total Tweets:</b> {stats.total}</li>
               <li><b>Loudio Mentions:</b> {stats.loudioCount}</li>
-              <li><b>Unique Hashtags:</b> {stats.uniqueHashtags}</li>
-              <li><b>Unique Mentions:</b> {stats.uniqueMentions}</li>
+              <li><b>Hashtags:</b> {stats.uniqueHashtags}</li>
+              <li><b>Mentions:</b> {stats.uniqueMentions}</li>
             </ul>
           </div>
 
