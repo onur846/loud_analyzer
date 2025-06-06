@@ -50,7 +50,7 @@ export default function StrategyPage() {
             <h2 style={{ color: "#9fff43", fontSize: "1.5rem", marginBottom: "1rem" }}>📊 Statistics of last 24 hours</h2>
             <ul style={{ display: "flex", flexWrap: "wrap", gap: "2.5rem", padding: 0, listStyle: "none" }}>
               <li><b>Total Tweets:</b> {stats.total}</li>
-              <li><b>Loudio Mentions:</b> {stats.loudioCount}</li>
+              <li><b>🔥Loudio Mentions:</b> {stats.loudioCount}</li>
               <li><b>Hashtags:</b> {stats.uniqueHashtags}</li>
               <li><b>Mentions:</b> {stats.uniqueMentions}</li>
             </ul>
