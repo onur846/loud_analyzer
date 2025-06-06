@@ -36,7 +36,7 @@ export default function StrategyPage() {
       <header className="header header-row">
         <img src="/loudion.png" alt="Loudions Logo" className="loudion-logo" />
         <div>
-          <h1>Strategy of <span style={{ color: '#9fff43' }}>@{handle}</span></h1>
+          <h1>👽Strategy of <span style={{ color: '#9fff43' }}>@{handle}</span></h1>
           <p>All activity and statistics for <b>@{handle}</b> based on posts from last 24 hours.</p>
         </div>
       </header>
